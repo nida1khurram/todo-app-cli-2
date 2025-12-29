@@ -1,0 +1,49 @@
+{
+  "name": "todo-fullstack-webapp",
+  "description": "Full-stack todo application with Next.js, FastAPI, and PostgreSQL",
+  "version": "2.0.0",
+  "libraries": {
+    "frontend": [
+      "next@15",
+      "react@19",
+      "typescript@5",
+      "tailwindcss@3",
+      "better-auth@1",
+      "zod@3"
+    ],
+    "backend": [
+      "fastapi@0.115",
+      "sqlmodel@0.0.22",
+      "pydantic@2",
+      "python-jose[cryptography]@3.3",
+      "passlib[bcrypt]@1.7",
+      "uvicorn@0.30",
+      "asyncpg@0.29"
+    ],
+    "database": [
+      "postgresql@16"
+    ]
+  },
+  "contexts": [
+    {
+      "name": "authentication",
+      "libraries": ["better-auth", "python-jose", "passlib"],
+      "description": "User authentication with JWT tokens"
+    },
+    {
+      "name": "database",
+      "libraries": ["sqlmodel", "asyncpg", "postgresql"],
+      "description": "Database models and connections"
+    },
+    {
+      "name": "frontend-ui",
+      "libraries": ["next", "react", "tailwindcss"],
+      "description": "Frontend components and styling"
+    },
+    {
+      "name": "api",
+      "libraries": ["fastapi", "pydantic"],
+      "description": "REST API endpoints and schemas"
+    }
+  ]
+}
