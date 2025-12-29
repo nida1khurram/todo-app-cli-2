@@ -215,7 +215,7 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 |-------|-------------|-------------|
 | `authentication-agent` | Authentication & authorization expert | Better Auth setup, JWT handling, protected routes, login/signup flows, 401/403 debugging |
 | `fastapi-backend-agent` | FastAPI backend architect | CRUD APIs, SQLModel models, Neon PostgreSQL, JWT middleware, API endpoints |
-| `nextjs-frontend-agent` | Next.js 16+ frontend developer | App Router pages, React Server Components, Tailwind CSS, Better Auth integration |
+| `nextjs-frontend-agent` | Next.js 15+ frontend developer | App Router pages, React Server Components, Tailwind CSS, Better Auth integration |
 | `python-console-agent` | Python CLI application developer | Terminal apps with Rich, UV package management, Pydantic validation, Command pattern |
 | `spec-driven-dev` | Spec-Kit Plus methodology expert | Constitution files, feature specs, API specs, project specification structure |
 
@@ -223,15 +223,28 @@ See `.specify/memory/constitution.md` for code quality, testing, performance, se
 
 | Skill | Description |
 |-------|-------------|
+| `api_client_creation` | Create centralized API client with JWT injection, generics, error handling, typed methods |
+| `better_auth_setup` | Configure Better Auth with Neon PostgreSQL, JWT plugin, session management, auth routes |
 | `claude_md_generation` | Generate CLAUDE.md files with project context for AI assistants |
 | `cli_interface_design` | Create CLIs using Rich library (Console, Table, Prompt, menus) |
+| `client_component_patterns` | Create Client Components with 'use client', React hooks, event handling, client state |
 | `command_pattern_implementation` | Implement Command pattern with abstract base class and dependency injection |
 | `constitution_creation` | Create constitution.md with vision, principles, constraints, tech stack |
 | `data_validation` | Pydantic BaseModel validation with Field constraints and custom validators |
+| `database_connection_setup` | Set up Neon PostgreSQL with SQLModel, dependency injection, connection pooling |
+| `fastapi_project_setup` | Set up FastAPI with routes/, CORS, async endpoints, SQLModel, uvicorn |
 | `in_memory_storage` | Type-safe in-memory storage with CRUD operations and auto-incrementing IDs |
+| `jwt_verification` | Implement JWT verification middleware in FastAPI with Bearer token extraction |
+| `nextjs_app_router_setup` | Set up Next.js 15+ with App Router, TypeScript strict mode, Tailwind CSS |
+| `protected_route_implementation` | Protect API routes with user isolation, authentication verification |
+| `pydantic_schema_creation` | Create separate Pydantic schemas for Create, Update, Response operations |
 | `python_project_structure` | Set up Python 3.13+ project with UV, pyproject.toml, src/ layout |
+| `restful_api_design` | Design RESTful endpoints with proper HTTP methods and status codes |
+| `server_component_patterns` | Create React Server Components with async/await data fetching |
 | `spec_kit_structure` | Initialize Spec-Kit Plus folder structure for spec-driven development |
 | `spec_writing` | Write feature specs with user stories, acceptance criteria, constraints |
+| `sqlmodel_schema_design` | Create SQLModel classes with table=True, indexes, foreign keys, timestamps |
+| `tailwind_styling` | Apply Tailwind CSS utilities for responsive design with mobile-first approach |
 
 ## Available Commands (Spec-Kit Plus)
 
