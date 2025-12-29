@@ -1,215 +1,255 @@
 # Context7 MCP Setup Instructions
 
+## ✅ Status: INSTALLED & CONNECTED
+
+Context7 MCP server is already installed and connected to your Claude Code!
+
+```bash
+context7: npx @upstash/context7-mcp - ✓ Connected
+```
+
+---
+
 ## Prerequisites
 
-1. Node.js 18+ installed
-2. npm installed
-3. Claude Desktop installed
+1. Node.js 18+ installed ✅
+2. npm installed ✅
+3. Claude Code CLI installed ✅
 
-## Installation Steps
+## Installation Steps (Already Completed)
 
-### Step 1: Install Context7 MCP Server
-
-```bash
-npm install -g @context7/mcp-server
-```
-
-### Step 2: Create Claude Desktop Config
-
-**File Location**: `%APPDATA%\Claude\claude_desktop_config.json`
-
-**Full Path**: `C:\Users\YOUR_USERNAME\AppData\Roaming\Claude\claude_desktop_config.json`
-
-**Content**:
-```json
-{
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@context7/mcp-server"],
-      "env": {
-        "CONTEXT7_API_KEY": "your-api-key-here"
-      }
-    }
-  }
-}
-```
-
-### Step 3: Restart Claude Desktop
-
-Close and reopen Claude Desktop application for changes to take effect.
-
-### Step 4: Verify Installation
-
-In Claude Desktop, type:
-```
-@context7/help
-```
-
-If successful, you'll see Context7 commands.
-
-## Phase II Project Libraries
-
-### Frontend Stack (Next.js 15+)
-
-Add these libraries to Context7:
+### Step 1: Install Context7 MCP Server ✅
 
 ```bash
-@context7/add next@15
-@context7/add react@19
-@context7/add typescript@5
-@context7/add tailwindcss@3
-@context7/add better-auth@1
-@context7/add zod@3
+npm install -g @upstash/context7-mcp
 ```
 
-**Additional Frontend Libraries**:
-- `@types/node` - TypeScript types for Node.js
-- `@types/react` - TypeScript types for React
-- `@types/react-dom` - TypeScript types for React DOM
-- `autoprefixer` - PostCSS plugin for Tailwind
-- `postcss` - CSS transformations
-
-### Backend Stack (FastAPI + Python)
-
-Add these libraries to Context7:
+### Step 2: Add Context7 to Claude Code ✅
 
 ```bash
-@context7/add fastapi@0.115
-@context7/add sqlmodel@0.0.22
-@context7/add pydantic@2
-@context7/add python-jose
-@context7/add passlib
-@context7/add uvicorn@0.30
-@context7/add asyncpg@0.29
+claude mcp add --transport stdio context7 -- npx -y @upstash/context7-mcp
 ```
 
-**Additional Backend Libraries**:
-- `python-multipart` - Form data parsing
-- `bcrypt` - Password hashing
-- `cryptography` - JWT encryption
-
-### Database
+### Step 3: Verify Installation ✅
 
 ```bash
-@context7/add postgresql@16
+claude mcp list
+# Output: context7: npx @upstash/context7-mcp - ✓ Connected
 ```
 
-## Context Switching
+---
 
-### Available Contexts
+## How to Use Context7
 
-1. **authentication** - User auth, JWT, Better Auth
-2. **database** - SQLModel, PostgreSQL, async queries
-3. **frontend-ui** - Next.js, React components, Tailwind
-4. **api** - FastAPI endpoints, Pydantic schemas
+### Basic Usage
 
-### Usage Examples
+In your prompts, use the `use context7` command to fetch documentation:
 
+```
+use context7 for next.js 15
+use context7 for fastapi 0.115
+use context7 for react 19
+use context7 for tailwindcss 3
+```
+
+### Project-Specific Libraries
+
+For this Phase II full-stack todo app, use Context7 for these libraries:
+
+#### Frontend Stack
+```
+use context7 for next.js 15
+use context7 for react 19
+use context7 for typescript 5
+use context7 for tailwindcss 3
+use context7 for better-auth 1
+use context7 for zod 3
+```
+
+#### Backend Stack
+```
+use context7 for fastapi 0.115
+use context7 for sqlmodel 0.0.22
+use context7 for pydantic 2
+use context7 for uvicorn 0.30
+use context7 for python-jose
+use context7 for passlib
+```
+
+#### Database
+```
+use context7 for postgresql 16
+use context7 for asyncpg 0.29
+```
+
+### Example Prompts
+
+**When building authentication:**
+```
+use context7 for better-auth and python-jose
+
+Help me implement JWT authentication with Better Auth on the frontend
+and python-jose on the backend.
+```
+
+**When creating database models:**
+```
+use context7 for sqlmodel and postgresql
+
+Create SQLModel database models for User, Task, Tag, and TaskTag tables
+with proper relationships and indexes.
+```
+
+**When building UI components:**
+```
+use context7 for next.js 15 and tailwindcss 3
+
+Create a responsive task list component using Next.js App Router
+and Tailwind CSS with mobile-first design.
+```
+
+**When creating API endpoints:**
+```
+use context7 for fastapi and pydantic
+
+Create FastAPI endpoints for task CRUD operations with Pydantic schemas
+for validation.
+```
+
+---
+
+## MCP Server Management
+
+### List All MCP Servers
 ```bash
-# Switch to authentication context
-@context7/use authentication
-
-# Work with auth-related code...
-
-# Switch to frontend context
-@context7/use frontend-ui
-
-# Work with UI components...
-
-# Switch to API context
-@context7/use api
-
-# Work with backend endpoints...
+claude mcp list
 ```
 
-## Context7 Common Commands
+### Get Context7 Details
+```bash
+claude mcp get context7
+```
 
-| Command | Description |
-|---------|-------------|
-| `@context7/add <lib>` | Add library to context |
-| `@context7/remove <lib>` | Remove library from context |
-| `@context7/list` | Show all available contexts |
-| `@context7/current` | Show current active context |
-| `@context7/use <name>` | Switch to specific context |
-| `@context7/help` | Show all commands |
+### Remove Context7 (if needed)
+```bash
+claude mcp remove context7 -s local
+```
 
-## Project-Specific Setup
+### Re-add Context7
+```bash
+claude mcp add --transport stdio context7 -- npx -y @upstash/context7-mcp
+```
 
-This project has `.context7.json` configuration file with predefined contexts:
+---
 
-- **authentication**: JWT tokens, Better Auth, password hashing
-- **database**: SQLModel ORM, PostgreSQL, async connections
-- **frontend-ui**: Next.js App Router, React Server/Client Components, Tailwind CSS
-- **api**: FastAPI routes, Pydantic schemas, request/response models
+## Context7 Features
+
+1. **Real-time Documentation**: Fetches latest docs from official sources
+2. **Version-Specific**: Get docs for exact library versions
+3. **Code Examples**: Includes practical code snippets
+4. **Up-to-date**: Always current, no stale documentation
+5. **Direct Integration**: Works seamlessly with Claude Code
+
+---
 
 ## Troubleshooting
 
-### Context7 Not Found
+### Context7 Not Responding
 
-If `@context7/add` doesn't work:
+If Context7 stops responding:
 
-1. Verify Context7 MCP is installed:
+1. Check server status:
    ```bash
-   npm list -g @context7/mcp-server
+   claude mcp list
    ```
 
-2. Check Claude Desktop config exists:
+2. Restart Claude Code session
+
+3. If still issues, reinstall:
    ```bash
-   cat %APPDATA%\Claude\claude_desktop_config.json
+   claude mcp remove context7 -s local
+   npm install -g @upstash/context7-mcp --force
+   claude mcp add --transport stdio context7 -- npx -y @upstash/context7-mcp
    ```
 
-3. Restart Claude Desktop completely
-
-### API Key Issues
-
-If you need a Context7 API key:
-
-1. Visit Context7 website
-2. Create an account
-3. Generate API key
-4. Add to `claude_desktop_config.json`
-
-### Permission Errors
+### NPM Install Issues
 
 If you get permission errors:
 
 ```bash
-# Run as administrator
-npm install -g @context7/mcp-server --force
+# Windows (run as administrator)
+npm install -g @upstash/context7-mcp --force
+
+# Alternative: use npx without global install
+claude mcp add --transport stdio context7 -- npx -y @upstash/context7-mcp
 ```
+
+### Verify Node.js Version
+
+Context7 requires Node.js 18+:
+
+```bash
+node --version
+# Should show v18.x.x or higher
+```
+
+---
 
 ## Best Practices
 
-1. **Use specific contexts** for different tasks:
-   - Use `authentication` when working on auth
-   - Use `frontend-ui` for UI components
-   - Use `api` for backend endpoints
-   - Use `database` for models and queries
+1. **Be Specific**: Always include version numbers
+   - ✅ `use context7 for next.js 15`
+   - ❌ `use context7 for next.js`
 
-2. **Add libraries incrementally**:
-   - Start with core libraries
-   - Add additional libraries as needed
-   - Keep contexts focused and small
+2. **Combine Related Libraries**: 
+   ```
+   use context7 for fastapi, sqlmodel, and pydantic
+   ```
 
-3. **Version pinning**:
-   - Use specific versions in production
-   - Use `@latest` for experiments
+3. **Use in Planning Phase**:
+   - Before `/sp.plan`: Get architecture docs
+   - During implementation: Get specific API docs
 
-4. **Context switching**:
-   - Switch contexts before starting new tasks
-   - Keeps Claude focused on relevant docs
+4. **Context Switching**:
+   - Frontend work: `use context7 for next.js, react, tailwindcss`
+   - Backend work: `use context7 for fastapi, sqlmodel`
+   - Auth work: `use context7 for better-auth, python-jose`
+
+---
 
 ## Next Steps
 
-After setup:
+Now that Context7 is installed:
 
-1. Run `/sp.plan` to create implementation plan
-2. Use Context7 contexts during implementation
-3. Switch contexts as you work on different parts
+1. ✅ Context7 MCP is connected
+2. ⏭️ Run `/sp.plan` to create implementation plan
+3. 💡 Use `use context7` commands during implementation
+4. 🚀 Build Phase II full-stack todo app!
 
-## Support
+---
 
-- Context7 Documentation: https://context7.dev/docs
-- Claude MCP Guide: https://docs.anthropic.com/mcp
-- Project Issues: Open issue in project repository
+## Resources
+
+- **Context7 GitHub**: https://github.com/upstash/context7
+- **NPM Package**: https://www.npmjs.com/package/@upstash/context7-mcp
+- **MCP Documentation**: https://code.claude.com/docs/en/mcp
+- **Claude Code Docs**: https://code.claude.com/docs
+
+---
+
+## Project Configuration
+
+This project has `.context7.json` with predefined contexts:
+
+- **authentication**: JWT tokens, Better Auth, password hashing
+- **database**: SQLModel ORM, PostgreSQL, async connections
+- **frontend-ui**: Next.js App Router, React Components, Tailwind CSS
+- **api**: FastAPI routes, Pydantic schemas, request/response models
+
+---
+
+**Installation Status**: ✅ COMPLETE
+**Server Status**: ✅ CONNECTED
+**Ready to Use**: ✅ YES
+
+Start using Context7 in your prompts with `use context7 for <library>`!
