@@ -1,0 +1,18 @@
+{
+  "$schema": "https://railway.app/schema.json",
+  "name": "todo-backend",
+  "build": {
+    "builder": "NIXPACKS"
+  },
+  "deploy": {
+    "startCommand": "uvicorn src.main:app --host 0.0.0.0 --port $PORT",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10
+  },
+  "environmentVariables": {
+    "DATABASE_URL": "$DATABASE_URL",
+    "JWT_SECRET": "$JWT_SECRET",
+    "CORS_ORIGINS": "$CORS_ORIGINS",
+    "JWT_EXPIRATION_DAYS": "7"
+  }
+}
