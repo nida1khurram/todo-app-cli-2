@@ -15,7 +15,7 @@ class Task(SQLModel, table=True):
     __tablename__ = "tasks"
 
     id: int | None = Field(default=None, primary_key=True)
-    user_id: int = Field(foreign_key="users.id", index=True)
+    user_id: str = Field(foreign_key="users.id", index=True)
     title: str = Field(max_length=200)
     description: Optional[str] = Field(default=None, max_length=2000)
     is_completed: bool = Field(default=False, index=True)

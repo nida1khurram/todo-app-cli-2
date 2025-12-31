@@ -1,31 +1,34 @@
-"""Tag schemas for request/response validation."""
+"""Tag schemas."""
 
 from datetime import datetime
+from typing import Optional
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field
 
 
-class TagCreate(BaseModel):
-    """Schema for creating a new tag."""
+class TagBase(BaseModel):
+    """Base tag schema."""
 
     name: str = Field(min_length=1, max_length=50)
 
-    @field_validator("name")
-    @classmethod
-    def name_not_empty(cls, v: str) -> str:
-        """Validate and clean tag name."""
-        v = v.strip().lower()
-        if not v:
-            raise ValueError("Tag name cannot be empty or whitespace")
-        return v
+
+class TagCreate(TagBase):
+    """Schema for creating a tag."""
+
+    pass
 
 
-class TagResponse(BaseModel):
-    """Schema for tag response."""
+class TagUpdate(BaseModel):
+    """Schema for updating a tag."""
+
+    name: Optional[str] = Field(default=None, min_length=1, max_length=50)
+
+
+class Tag(TagBase):
+    """Complete tag schema for responses."""
 
     id: int
-    user_id: int
-    name: str
+    user_id: str
     created_at: datetime
 
-    model_config = {"from_attributes": True}
+    model_config = ConfigDict(from_attributes=True)

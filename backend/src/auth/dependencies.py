@@ -40,13 +40,8 @@ async def get_current_user(
     if payload is None:
         raise credentials_exception
 
-    user_id_str: str | None = payload.get("sub")
-    if user_id_str is None:
-        raise credentials_exception
-
-    try:
-        user_id = int(user_id_str)
-    except ValueError:
+    user_id: str | None = payload.get("sub")
+    if user_id is None:
         raise credentials_exception
 
     result = await session.execute(select(User).where(User.id == user_id))
@@ -60,14 +55,14 @@ async def get_current_user(
 
 async def get_current_user_id(
     credentials: HTTPAuthorizationCredentials = Depends(security),
-) -> int:
+) -> str:
     """Get the current user ID from token (no database lookup).
 
     Args:
         credentials: Bearer token from Authorization header.
 
     Returns:
-        User ID if token is valid.
+        User ID (string from Better Auth) if token is valid.
 
     Raises:
         HTTPException: If token is invalid.
@@ -82,19 +77,13 @@ async def get_current_user_id(
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    user_id_str: str | None = payload.get("sub")
-    if user_id_str is None:
+    user_id: str | None = payload.get("sub")
+    if user_id is None:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Could not validate credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
-    try:
-        return int(user_id_str)
-    except ValueError:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
+    # Return string user_id (Better Auth format) - no int() conversion
+    return user_id

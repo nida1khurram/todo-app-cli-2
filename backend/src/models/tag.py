@@ -19,7 +19,7 @@ class Tag(SQLModel, table=True):
     )
 
     id: int | None = Field(default=None, primary_key=True)
-    user_id: int = Field(foreign_key="users.id", index=True)
+    user_id: str = Field(foreign_key="users.id", index=True)
     name: str = Field(max_length=50, index=True)
     created_at: datetime = Field(default_factory=datetime.utcnow)
 
