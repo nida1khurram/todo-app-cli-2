@@ -7,8 +7,6 @@ from jose import JWTError, jwt
 
 from src.config import get_settings
 
-settings = get_settings()
-
 
 def create_access_token(data: dict[str, Any], expires_delta: timedelta | None = None) -> str:
     """Create a JWT access token.
@@ -20,6 +18,7 @@ def create_access_token(data: dict[str, Any], expires_delta: timedelta | None = 
     Returns:
         Encoded JWT token string.
     """
+    settings = get_settings()
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now(timezone.utc) + expires_delta
@@ -43,6 +42,7 @@ def decode_token(token: str) -> dict[str, Any] | None:
     Returns:
         Payload dict if token is valid, None otherwise.
     """
+    settings = get_settings()
     try:
         payload = jwt.decode(
             token,

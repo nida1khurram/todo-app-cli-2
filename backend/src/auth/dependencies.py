@@ -1,5 +1,7 @@
 """FastAPI authentication dependencies."""
 
+import logging
+
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -9,6 +11,7 @@ from src.auth.jwt import decode_token
 from src.database import get_session
 from src.models.user import User
 
+logger = logging.getLogger(__name__)
 security = HTTPBearer()
 
 
@@ -35,9 +38,12 @@ async def get_current_user(
     )
 
     token = credentials.credentials
+    logger.info(f"Token extracted: {token[:50]}...")
     payload = decode_token(token)
+    logger.info(f"Payload: {payload}")
 
     if payload is None:
+        logger.error("decode_token returned None")
         raise credentials_exception
 
     user_id: str | None = payload.get("sub")

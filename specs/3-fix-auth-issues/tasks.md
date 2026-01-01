@@ -17,10 +17,10 @@
 
 **Purpose**: Project initialization and basic structure
 
-- [ ] T001 Create environment variables template in backend/.env.example (BETTER_AUTH_SECRET, JWT_SECRET, CORS_ORIGINS)
-- [ ] T002 Create environment variables template in frontend/.env.local.example (BETTER_AUTH_SECRET, BETTER_AUTH_URL, NEXT_PUBLIC_API_URL)
-- [ ] T003 [P] Verify backend dependencies in pyproject.toml (better-auth, pyjwt, python-jose)
-- [ ] T004 [P] Verify frontend dependencies in package.json (@better-auth/jwt, better-auth)
+- [x] T001 Create environment variables template in backend/.env.example (BETTER_AUTH_SECRET, JWT_SECRET, CORS_ORIGINS)
+- [x] T002 Create environment variables template in frontend/.env.local.example (BETTER_AUTH_SECRET, BETTER_AUTH_URL, NEXT_PUBLIC_API_URL)
+- [x] T003 [P] Verify backend dependencies in pyproject.toml (better-auth, pyjwt, python-jose)
+- [x] T004 [P] Verify frontend dependencies in package.json (@better-auth/jwt, better-auth)
 
 ---
 
@@ -30,15 +30,15 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T005 Configure Better Auth with JWT plugin in frontend/src/lib/auth.ts (database adapter, emailAndPassword, jwt configuration)
-- [ ] T006 Create Better Auth API route handler in frontend/src/app/api/auth/[...all]/route.ts (GET, POST handlers from toNextJsHandler)
-- [ ] T007 Update backend JWT verification to accept string user_id in backend/src/auth/dependencies.py (remove int() conversion, accept string sub)
-- [ ] T008 Verify CORS configuration in backend/src/main.py (allow_credentials=True, allow_origins includes localhost:3000)
-- [ ] T009 Update Task model to use string better_auth_user_id in backend/src/models/task.py
-- [ ] T010 [P] Update Tag model to use string better_auth_user_id in backend/src/models/tag.py
-- [ ] T011 [P] Update TaskTag model in backend/src/models/task_tag.py
-- [ ] T012 Update Task schemas with proper validation in backend/src/schemas/task.py (title, priority, tags)
-- [ ] T013 Update frontend API client token key in frontend/src/lib/api-client.ts (use consistent key)
+- [x] T005 Configure Better Auth with JWT plugin in frontend/src/lib/auth.ts (database adapter, emailAndPassword, jwt configuration)
+- [x] T006 Create Better Auth API route handler in frontend/src/app/api/auth/[...all]/route.ts (GET, POST handlers from toNextJsHandler)
+- [x] T007 Update backend JWT verification to accept string user_id in backend/src/auth/dependencies.py (remove int() conversion, accept string sub)
+- [x] T008 Verify CORS configuration in backend/src/main.py (allow_credentials=True, allow_origins includes localhost:3000)
+- [x] T009 Update Task model to use string better_auth_user_id in backend/src/models/task.py
+- [x] T010 [P] Update Tag model to use string better_auth_user_id in backend/src/models/tag.py
+- [x] T011 [P] Update TaskTag model in backend/src/models/task_tag.py
+- [x] T012 Update Task schemas with proper validation in backend/src/schemas/task.py (title, priority, tags)
+- [x] T013 Update frontend API client token key in frontend/src/lib/api-client.ts (use consistent key)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -52,11 +52,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T014 [US1] Update registration page to use Better Auth in frontend/src/app/(auth)/register/page.tsx (signUp.email API)
-- [ ] T015 [US1] Create registration form component with email, password, confirm password fields in frontend/src/components/auth/register-form.tsx
-- [ ] T016 [US1] Add password validation (8+ chars, uppercase, lowercase, digit) in register form
-- [ ] T017 [US1] Handle registration success/error states with user-friendly messages
-- [ ] T018 [US1] Redirect to tasks dashboard on successful registration
+- [x] T014 [US1] Update registration page to use Better Auth in frontend/src/app/(auth)/register/page.tsx (signUp.email API)
+- [x] T015 [US1] Create registration form component with email, password, confirm password fields in frontend/src/components/auth/register-form.tsx
+- [x] T016 [US1] Add password validation (8+ chars, uppercase, lowercase, digit) in register form
+- [x] T017 [US1] Handle registration success/error states with user-friendly messages
+- [x] T018 [US1] Redirect to tasks dashboard on successful registration
 
 **Checkpoint**: User registration should work - test with new account creation
 
@@ -70,11 +70,11 @@
 
 ### Implementation for User Story 2
 
-- [ ] T019 [US2] Update login page to use Better Auth in frontend/src/app/(auth)/login/page.tsx (signIn.email API)
-- [ ] T020 [US2] Create login form component with email and password fields in frontend/src/components/auth/login-form.tsx
-- [ ] T021 [US2] Handle login success/error states (invalid credentials message)
-- [ ] T022 [US2] Redirect to tasks dashboard on successful login
-- [ ] T023 [US2] Update dashboard layout to use Better Auth session in frontend/src/app/(dashboard)/layout.tsx (use auth.session instead of authApi.me)
+- [x] T019 [US2] Update login page to use Better Auth in frontend/src/app/(auth)/login/page.tsx (signIn.email API)
+- [x] T020 [US2] Create login form component with email and password fields in frontend/src/components/auth/login-form.tsx
+- [x] T021 [US2] Handle login success/error states (invalid credentials message)
+- [x] T022 [US2] Redirect to tasks dashboard on successful login
+- [x] T023 [US2] Update dashboard layout to use Better Auth session in frontend/src/app/(dashboard)/layout.tsx (use auth.session instead of authApi.me)
 
 **Checkpoint**: User login should work - test with registered account
 
@@ -88,14 +88,14 @@
 
 ### Implementation for User Story 3
 
-- [ ] T024 [US3] Update tasks API client to get token from Better Auth in frontend/src/lib/api-client.ts
-- [ ] T025 [US3] Fix task creation endpoint in backend/src/routes/tasks.py (verify get_current_user_id returns string)
-- [ ] T026 [US3] Add task list endpoint GET /api/tasks with user filtering
-- [ ] T027 [US3] Add task creation endpoint POST /api/tasks with proper validation
-- [ ] T028 [US3] Add task update endpoint PUT /api/tasks/{id}
-- [ ] T029 [US3] Add task toggle completion endpoint PATCH /api/tasks/{id}
-- [ ] T030 [US3] Add task delete endpoint DELETE /api/tasks/{id}
-- [ ] T031 [US3] Update tasks page to use API client in frontend/src/app/(dashboard)/tasks/page.tsx
+- [x] T024 [US3] Update tasks API client to get token from Better Auth in frontend/src/lib/api-client.ts
+- [x] T025 [US3] Fix task creation endpoint in backend/src/routes/tasks.py (verify get_current_user_id returns string)
+- [x] T026 [US3] Add task list endpoint GET /api/tasks with user filtering
+- [x] T027 [US3] Add task creation endpoint POST /api/tasks with proper validation
+- [x] T028 [US3] Add task update endpoint PUT /api/tasks/{id}
+- [x] T029 [US3] Add task toggle completion endpoint PATCH /api/tasks/{id}
+- [x] T030 [US3] Add task delete endpoint DELETE /api/tasks/{id}
+- [x] T031 [US3] Update tasks page to use API client in frontend/src/app/(dashboard)/tasks/page.tsx
 
 **Checkpoint**: Task creation and CRUD should work without 401 errors
 
@@ -109,11 +109,11 @@
 
 ### Implementation for User Story 4
 
-- [ ] T032 [US4] Create Next.js middleware for route protection in frontend/middleware.ts
-- [ ] T033 [US4] Define protected routes pattern in middleware (/tasks, /profile, etc.)
-- [ ] T034 [US4] Define auth routes pattern in middleware (/login, /register)
-- [ ] T035 [US4] Implement redirect to login for unauthenticated access to protected routes
-- [ ] T036 [US4] Implement redirect to dashboard for authenticated access to auth routes
+- [x] T032 [US4] Create Next.js middleware for route protection in frontend/middleware.ts
+- [x] T033 [US4] Define protected routes pattern in middleware (/tasks, /profile, etc.)
+- [x] T034 [US4] Define auth routes pattern in middleware (/login, /register)
+- [x] T035 [US4] Implement redirect to login for unauthenticated access to protected routes
+- [x] T036 [US4] Implement redirect to dashboard for authenticated access to auth routes
 
 **Checkpoint**: Protected routes should redirect properly
 
@@ -127,10 +127,10 @@
 
 ### Implementation for User Story 5
 
-- [ ] T037 [US5] Audit all frontend files for token storage usage (grep for localStorage.getItem/setItem)
-- [ ] T038 [US5] Update any inconsistent token key usage to use BETTER_AUTH_SESSION_TOKEN
-- [ ] T039 [US5] Remove custom JWT token creation/validation code (authApi.register, authApi.login) - use Better Auth only
-- [ ] T040 [US5] Clean up unused auth imports and dependencies
+- [x] T037 [US5] Audit all frontend files for token storage usage (grep for localStorage.getItem/setItem)
+- [x] T038 [US5] Update any inconsistent token key usage to use BETTER_AUTH_SESSION_TOKEN
+- [x] T039 [US5] Remove custom JWT token creation/validation code (authApi.register, authApi.login) - use Better Auth only
+- [x] T040 [US5] Clean up unused auth imports and dependencies
 
 **Checkpoint**: All token storage should be consistent
 
@@ -144,10 +144,10 @@
 
 ### Implementation for Tag Management
 
-- [ ] T041 Add tag creation endpoint POST /api/tags in backend/src/routes/tags.py
-- [ ] T042 Add tag list endpoint GET /api/tags in backend/src/routes/tags.py
-- [ ] T043 Add tag delete endpoint DELETE /api/tags/{id} in backend/src/routes/tags.py
-- [ ] T044 Update Task model to include tags relationship in backend/src/models/task.py
+- [x] T041 Add tag creation endpoint POST /api/tags in backend/src/routes/tags.py
+- [x] T042 Add tag list endpoint GET /api/tags in backend/src/routes/tags.py
+- [x] T043 Add tag delete endpoint DELETE /api/tags/{id} in backend/src/routes/tags.py
+- [x] T044 Update Task model to include tags relationship in backend/src/models/task.py
 
 ---
 
@@ -155,12 +155,12 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T045 [P] Run full authentication flow test (register → login → create task → view tasks)
-- [ ] T046 [P] Verify CORS headers allow Authorization header from frontend
-- [ ] T047 Add error logging for authentication failures
-- [ ] T048 Update frontend logout to use Better Auth signOut in frontend/src/app/(dashboard)/layout.tsx
-- [ ] T049 [P] Run quickstart.md validation from specs/3-fix-auth-issues/quickstart.md
-- [ ] T050 Create integration test for complete auth flow (register, login, create task, logout)
+- [x] T045 [P] Run full authentication flow test (register → login → create task → view tasks)
+- [x] T046 [P] Verify CORS headers allow Authorization header from frontend
+- [x] T047 Add error logging for authentication failures
+- [x] T048 Update frontend logout to use Better Auth signOut in frontend/src/app/(dashboard)/layout.tsx
+- [x] T049 [P] Run quickstart.md validation from specs/3-fix-auth-issues/quickstart.md
+- [x] T050 Create integration test for complete auth flow (register, login, create task, logout)
 
 ---
 

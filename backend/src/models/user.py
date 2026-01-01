@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from typing import TYPE_CHECKING
+from uuid import uuid4
 
 from sqlmodel import Field, Relationship, SQLModel
 
@@ -15,8 +16,9 @@ class User(SQLModel, table=True):
 
     __tablename__ = "users"
 
-    id: str = Field(primary_key=True)
+    id: str = Field(default_factory=lambda: str(uuid4()), primary_key=True)
     email: str = Field(unique=True, index=True, max_length=255)
+    password_hash: str = Field(max_length=255)
     full_name: str | None = Field(default=None, max_length=255)
     image: str | None = Field(default=None, max_length=1000)
     created_at: datetime = Field(default_factory=datetime.utcnow)

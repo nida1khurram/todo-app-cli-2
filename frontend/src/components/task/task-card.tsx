@@ -84,7 +84,11 @@ export function TaskCard({ task, onUpdate, onEdit }: TaskCardProps) {
           type="button"
           onClick={handleToggleComplete}
           disabled={isToggling}
-          className="mt-1 h-5 w-5 rounded border-gray-300 text-primary-600 focus:ring-primary-500 disabled:cursor-wait cursor-pointer flex items-center justify-center"
+          className={`mt-1 h-5 w-5 rounded border-2 focus:ring-2 focus:ring-primary-500 focus:ring-offset-1 disabled:cursor-wait cursor-pointer flex items-center justify-center transition-all ${
+            task.is_completed
+              ? 'bg-green-600 border-green-600 text-white'
+              : 'border-gray-400 hover:border-gray-500 bg-white'
+          }`}
           aria-label={`Mark "${task.title}" as ${task.is_completed ? 'incomplete' : 'complete'}`}
         >
           {task.is_completed && (

@@ -25,6 +25,9 @@ class Settings(BaseSettings):
     # CORS
     cors_origins: str = "http://localhost:3000,http://localhost:3001"
 
+    # Better Auth
+    better_auth_secret: str = "your-better-auth-secret-key-minimum-32-chars"
+
     # Environment
     debug: bool = True
 

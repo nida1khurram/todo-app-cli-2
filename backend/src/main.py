@@ -29,7 +29,9 @@ app = FastAPI(
     description="Full-Stack Todo Web Application Backend API",
     version="0.1.0",
     lifespan=lifespan,
+    debug=settings.debug,
 )
+
 
 # Configure CORS
 app.add_middleware(

@@ -24,7 +24,7 @@ class TagUpdate(BaseModel):
     name: Optional[str] = Field(default=None, min_length=1, max_length=50)
 
 
-class Tag(TagBase):
+class TagResponse(TagBase):
     """Complete tag schema for responses."""
 
     id: int

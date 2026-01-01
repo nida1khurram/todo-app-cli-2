@@ -16,7 +16,7 @@ from src.schemas.task import TaskCreate, TaskResponse, TaskUpdate
 
 async def get_or_create_tags(
     session: AsyncSession,
-    user_id: int,
+    user_id: str,
     tag_names: list[str],
 ) -> list[Tag]:
     """Get existing tags or create new ones.
@@ -84,7 +84,7 @@ async def get_tasks(
     tags: str | None = None,
     sort_by: str = "created_at",
     sort_order: str = "desc",
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> list[TaskResponse]:
     """Get all tasks for the current user with optional filters.
@@ -146,7 +146,7 @@ async def get_tasks(
 @router.post("", response_model=TaskResponse, status_code=status.HTTP_201_CREATED)
 async def create_task(
     task_data: TaskCreate,
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> TaskResponse:
     """Create a new task.
@@ -184,7 +184,7 @@ async def create_task(
 @router.get("/{task_id}", response_model=TaskResponse)
 async def get_task(
     task_id: int,
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> TaskResponse:
     """Get a single task by ID.
@@ -218,7 +218,7 @@ async def get_task(
 async def update_task(
     task_id: int,
     task_data: TaskUpdate,
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> TaskResponse:
     """Update a task.
@@ -282,7 +282,7 @@ async def update_task(
 @router.patch("/{task_id}", response_model=TaskResponse)
 async def toggle_task_complete(
     task_id: int,
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> TaskResponse:
     """Toggle task completion status.
@@ -321,7 +321,7 @@ async def toggle_task_complete(
 @router.delete("/{task_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_task(
     task_id: int,
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> None:
     """Delete a task.

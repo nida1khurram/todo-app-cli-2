@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from pydantic import BaseModel, EmailStr, Field, field_validator
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 
 
 class UserCreate(BaseModel):
@@ -34,11 +34,11 @@ class UserLogin(BaseModel):
 class UserResponse(BaseModel):
     """Schema for user response (excludes sensitive data)."""
 
-    id: int
+    id: str
     email: str
     created_at: datetime
 
-    model_config = {"from_attributes": True}
+    model_config = ConfigDict(from_attributes=True, extra="ignore")
 
 
 class TokenResponse(BaseModel):

@@ -15,7 +15,7 @@ router = APIRouter(prefix="/api/tags", tags=["tags"])
 @router.get("", response_model=list[TagResponse])
 async def get_tags(
     search: str | None = None,
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> list[TagResponse]:
     """Get all tags for the current user with optional search.
@@ -44,7 +44,7 @@ async def get_tags(
 @router.post("", response_model=TagResponse, status_code=status.HTTP_201_CREATED)
 async def create_tag(
     tag_data: TagCreate,
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> TagResponse:
     """Create a new tag.
@@ -86,7 +86,7 @@ async def create_tag(
 @router.get("/{tag_id}", response_model=TagResponse)
 async def get_tag(
     tag_id: int,
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> TagResponse:
     """Get a single tag by ID.
@@ -119,7 +119,7 @@ async def get_tag(
 @router.delete("/{tag_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_tag(
     tag_id: int,
-    user_id: int = Depends(get_current_user_id),
+    user_id: str = Depends(get_current_user_id),
     session: AsyncSession = Depends(get_session),
 ) -> None:
     """Delete a tag.
